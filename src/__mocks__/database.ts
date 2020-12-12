@@ -22,7 +22,7 @@ export default class Database implements IDatabase {
     close: jest.fn(),
   };
 
-  select(table: string, criteria: TFieldset<any>) {
+  select<T>(table: string, criteria: TFieldset<T>) {
     this.mocks.select(table, criteria);
     const rows = fakeMysqlDriver.select(
       table,
@@ -32,7 +32,7 @@ export default class Database implements IDatabase {
     return PromisifyDelay(response, this.queryResponseDelay);
   }
 
-  insert(table: string, fieldset: TFieldset<any>) {
+  insert<T>(table: string, fieldset: TFieldset<T>) {
     this.mocks.insert(table, fieldset);
     const response = fakeMysqlDriver.insert(
       table,
@@ -41,7 +41,7 @@ export default class Database implements IDatabase {
     return PromisifyDelay(response, this.queryResponseDelay);
   }
 
-  update(table: string, criteria: TFieldset<any>, fieldset: TFieldset<any>) {
+  update<T>(table: string, criteria: TFieldset<T>, fieldset: TFieldset<T>) {
     this.mocks.update(table, criteria, fieldset);
     const response = fakeMysqlDriver.update(
       table,
@@ -51,7 +51,7 @@ export default class Database implements IDatabase {
     return PromisifyDelay(response, this.queryResponseDelay);
   }
 
-  delete(table: string, criteria: TFieldset<any>) {
+  delete<T>(table: string, criteria: TFieldset<T>) {
     this.mocks.delete(table, criteria);
     const response = fakeMysqlDriver.delete(
       table,

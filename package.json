@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Node.js package helping to manage your opencart store data easily.",
   "main": "lib/index.js",
+  "engines": {
+    "node": ">=10.23.0"
+  },
   "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest",

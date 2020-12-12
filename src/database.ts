@@ -11,7 +11,7 @@ export default class Database implements IDatabase {
     private prefix: string = "oc_"
   ) {}
 
-  async select(table: string, criteria: TFieldset<any>) {
+  async select<T>(table: string, criteria: TFieldset<T>) {
     const criteriaSnakeCase = snakeCasePropertyNames(
       criteria
     ) as TFieldset<any>;
@@ -29,7 +29,7 @@ export default class Database implements IDatabase {
     );
   }
 
-  async insert(table: string, data: TFieldset<any>) {
+  async insert<T>(table: string, data: TFieldset<T>) {
     const dataSnakeCase = snakeCasePropertyNames(data) as TFieldset<any>;
     const result = await this.connection.query(`
             INSERT INTO \`${this.prefix + table}\`
@@ -47,7 +47,7 @@ export default class Database implements IDatabase {
     return result[0] as TResponseHeaders;
   }
 
-  async update(table: string, criteria: TFieldset<any>, data: TFieldset<any>) {
+  async update<T>(table: string, criteria: TFieldset<T>, data: TFieldset<T>) {
     const dataSnakeCase = snakeCasePropertyNames(data) as TFieldset<any>;
     const criteriaSnakeCase = snakeCasePropertyNames(
       criteria
@@ -67,7 +67,7 @@ export default class Database implements IDatabase {
     return result[0] as TResponseHeaders;
   }
 
-  async delete(table: string, criteria: TFieldset<any>) {
+  async delete<T>(table: string, criteria: TFieldset<T>) {
     const criteriaSnakeCase = snakeCasePropertyNames(
       criteria
     ) as TFieldset<any>;
