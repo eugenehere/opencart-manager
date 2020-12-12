@@ -18,19 +18,19 @@
   "files": [
     "lib/"
   ],
-  "author": "eugene-braginio",
+  "author": "Yevheniy Brahin",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eugene-braginio/opencart-manager.git"
+    "url": "git+https://github.com/eugenehere/opencart-manager.git"
   },
   "keywords": [
     "opencart"
   ],
   "bugs": {
-    "url": "https://github.com/eugene-braginio/opencart-manager/issues"
+    "url": "https://github.com/eugenehere/opencart-manager/issues"
   },
-  "homepage": "https://github.com/eugene-braginio/opencart-manager#readme",
+  "homepage": "https://github.com/eugenehere/opencart-manager#readme",
   "dependencies": {
     "change-case": "^4.1.1",
     "mysql2": "^2.2.5"
