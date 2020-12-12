@@ -1,9 +1,9 @@
 import Database from "../__mocks__/database";
 import FakeEntity from "../__mocks__/entity";
-import Model from "../model";
-import { initialCategory, initialCategoryDescription } from "../initial";
-import CategoryFactory from "./category";
 import Category from "../entities/category";
+import { initialCategory, initialCategoryDescription } from "../initial";
+import Model from "../model";
+import CategoryFactory from "./category";
 
 const categoryId = 1;
 
@@ -59,11 +59,7 @@ test("extracts and returns an entity", async () => {
   expect(model.category.description.select).toHaveBeenNthCalledWith(1, {
     categoryId,
   });
-  expect(Category).toHaveBeenNthCalledWith(
-    2,
-    model,
-    categoryId
-  );
+  expect(Category).toHaveBeenNthCalledWith(2, model, categoryId);
   expect(entity!.data.sortOrder).toBe(123);
   expect(entity!.description[1].name).toBe("test1");
   expect(entity!.description[2].name).toBe("test2");
@@ -78,11 +74,7 @@ test("extracts all and returns an entities array", async () => {
   expect(model.category.description.select).toHaveBeenNthCalledWith(2, {
     categoryId,
   });
-  expect(Category).toHaveBeenNthCalledWith(
-    3,
-    model,
-    categoryId
-  );
+  expect(Category).toHaveBeenNthCalledWith(3, model, categoryId);
   expect(entity.data.sortOrder).toBe(123);
   expect(entity.description[1].name).toBe("test1");
   expect(entity.description[2].name).toBe("test2");

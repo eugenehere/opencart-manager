@@ -1,9 +1,12 @@
 import Database from "../__mocks__/database";
 import FakeEntity from "../__mocks__/entity";
-import Model from "../model";
-import { initialManufacturer, initialManufacturerDescription } from "../initial";
-import ManufacturerFactory from "./manufacturer";
 import Manufacturer from "../entities/manufacturer";
+import {
+  initialManufacturer,
+  initialManufacturerDescription,
+} from "../initial";
+import Model from "../model";
+import ManufacturerFactory from "./manufacturer";
 
 const manufacturerId = 1;
 
@@ -55,15 +58,13 @@ test("creates a new entity", () => {
 test("extracts and returns an entity", async () => {
   const entity = await factory.extract({ manufacturerId });
   expect(entity).toBeInstanceOf(FakeEntity);
-  expect(model.manufacturer.select).toHaveBeenNthCalledWith(1, { manufacturerId });
+  expect(model.manufacturer.select).toHaveBeenNthCalledWith(1, {
+    manufacturerId,
+  });
   expect(model.manufacturer.description.select).toHaveBeenNthCalledWith(1, {
     manufacturerId,
   });
-  expect(Manufacturer).toHaveBeenNthCalledWith(
-    2,
-    model,
-    manufacturerId
-  );
+  expect(Manufacturer).toHaveBeenNthCalledWith(2, model, manufacturerId);
   expect(entity!.data.sortOrder).toBe(123);
   expect(entity!.description[1].name).toBe("test1");
   expect(entity!.description[2].name).toBe("test2");
@@ -74,15 +75,13 @@ test("extracts all and returns an entities array", async () => {
   expect(entities).toBeArray();
   const entity = entities[0];
   expect(entity).toBeInstanceOf(FakeEntity);
-  expect(model.manufacturer.select).toHaveBeenNthCalledWith(2, { manufacturerId });
+  expect(model.manufacturer.select).toHaveBeenNthCalledWith(2, {
+    manufacturerId,
+  });
   expect(model.manufacturer.description.select).toHaveBeenNthCalledWith(2, {
     manufacturerId,
   });
-  expect(Manufacturer).toHaveBeenNthCalledWith(
-    3,
-    model,
-    manufacturerId
-  );
+  expect(Manufacturer).toHaveBeenNthCalledWith(3, model, manufacturerId);
   expect(entity.data.sortOrder).toBe(123);
   expect(entity.description[1].name).toBe("test1");
   expect(entity.description[2].name).toBe("test2");

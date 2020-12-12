@@ -1,9 +1,9 @@
 import Database from "../__mocks__/database";
 import FakeEntity from "../__mocks__/entity";
-import Model from "../model";
-import OptionFactory from "./option";
 import Option from "../entities/option";
 import { initialOption, initialOptionDescription } from "../initial";
+import Model from "../model";
+import OptionFactory from "./option";
 
 const optionId = 12;
 
@@ -59,11 +59,7 @@ test("extracts and returns an entity", async () => {
   expect(model.option.description.select).toHaveBeenNthCalledWith(1, {
     optionId,
   });
-  expect(Option).toHaveBeenNthCalledWith(
-    2,
-    model,
-    optionId
-  );
+  expect(Option).toHaveBeenNthCalledWith(2, model, optionId);
   expect(entity!.data.sortOrder).toBe(123);
   expect(entity!.description[1].name).toBe("test1");
   expect(entity!.description[2].name).toBe("test2");
@@ -78,11 +74,7 @@ test("extracts all and returns an entities array", async () => {
   expect(model.option.description.select).toHaveBeenNthCalledWith(2, {
     optionId,
   });
-  expect(Option).toHaveBeenNthCalledWith(
-    3,
-    model,
-    optionId
-  );
+  expect(Option).toHaveBeenNthCalledWith(3, model, optionId);
   expect(entity.data.sortOrder).toBe(123);
   expect(entity.description[1].name).toBe("test1");
   expect(entity.description[2].name).toBe("test2");

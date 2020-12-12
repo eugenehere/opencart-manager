@@ -1,11 +1,11 @@
 import Database from "../__mocks__/database";
 import FakeEntity from "../__mocks__/entity";
-import Model from "../model";
-import { initialProductOptionValue } from "../initial";
-import ProductOptionValue from "../entities/product-option-value";
-import ProductOptionValueFactory from './product-option-value';
-import ProductOption from "../entities/product-option";
 import OptionValue from "../entities/option-value";
+import ProductOption from "../entities/product-option";
+import ProductOptionValue from "../entities/product-option-value";
+import { initialProductOptionValue } from "../initial";
+import Model from "../model";
+import ProductOptionValueFactory from "./product-option-value";
 
 const productOptionValueId = 12;
 const productOptionId = 123;
@@ -38,7 +38,7 @@ const factory = new ProductOptionValueFactory(model);
 test("creates a new entity", () => {
   const entity = factory.create(
     { id: productOptionId } as ProductOption,
-    { id: optionValueId } as OptionValue,
+    { id: optionValueId } as OptionValue
   );
   expect(entity).toBeInstanceOf(FakeEntity);
 });
@@ -46,7 +46,9 @@ test("creates a new entity", () => {
 test("extracts and returns an entity", async () => {
   const entity = await factory.extract({ productOptionValueId });
   expect(entity).toBeInstanceOf(FakeEntity);
-  expect(model.product.option.value.select).toHaveBeenNthCalledWith(1, { productOptionValueId });
+  expect(model.product.option.value.select).toHaveBeenNthCalledWith(1, {
+    productOptionValueId,
+  });
   expect(ProductOptionValue).toHaveBeenNthCalledWith(
     2,
     model,
@@ -62,7 +64,9 @@ test("extracts all and returns an entities array", async () => {
   expect(entities).toBeArray();
   const entity = entities[0];
   expect(entity).toBeInstanceOf(FakeEntity);
-  expect(model.product.option.value.select).toHaveBeenNthCalledWith(2, { productOptionValueId });
+  expect(model.product.option.value.select).toHaveBeenNthCalledWith(2, {
+    productOptionValueId,
+  });
   expect(ProductOptionValue).toHaveBeenNthCalledWith(
     3,
     model,

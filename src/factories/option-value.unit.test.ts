@@ -1,10 +1,10 @@
 import Database from "../__mocks__/database";
 import FakeEntity from "../__mocks__/entity";
-import Model from "../model";
-import { initialOptionValue, initialOptionValueDescription } from "../initial";
-import OptionValueFactory from "./option-value";
-import OptionValue from "../entities/option-value";
 import Option from "../entities/option";
+import OptionValue from "../entities/option-value";
+import { initialOptionValue, initialOptionValueDescription } from "../initial";
+import Model from "../model";
+import OptionValueFactory from "./option-value";
 
 const optionValueId = 23;
 const optionId = 123;
@@ -58,7 +58,9 @@ test("creates a new entity", () => {
 test("extracts and returns an entity", async () => {
   const entity = await factory.extract({ optionValueId });
   expect(entity).toBeInstanceOf(FakeEntity);
-  expect(model.option.value.select).toHaveBeenNthCalledWith(1, { optionValueId });
+  expect(model.option.value.select).toHaveBeenNthCalledWith(1, {
+    optionValueId,
+  });
   expect(model.option.value.description.select).toHaveBeenNthCalledWith(1, {
     optionValueId,
   });
@@ -78,7 +80,9 @@ test("extracts all and returns an entities array", async () => {
   expect(entities).toBeArray();
   const entity = entities[0];
   expect(entity).toBeInstanceOf(FakeEntity);
-  expect(model.option.value.select).toHaveBeenNthCalledWith(2, { optionValueId });
+  expect(model.option.value.select).toHaveBeenNthCalledWith(2, {
+    optionValueId,
+  });
   expect(model.option.value.description.select).toHaveBeenNthCalledWith(2, {
     optionValueId,
   });

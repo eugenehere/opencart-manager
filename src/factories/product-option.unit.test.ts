@@ -1,11 +1,11 @@
 import Database from "../__mocks__/database";
 import FakeEntity from "../__mocks__/entity";
-import Model from "../model";
-import { initialProductOption } from "../initial";
-import ProductOptionFactory from "./product-option";
-import Product from "../entities/product";
 import Option from "../entities/option";
+import Product from "../entities/product";
 import ProductOption from "../entities/product-option";
+import { initialProductOption } from "../initial";
+import Model from "../model";
+import ProductOptionFactory from "./product-option";
 
 const productOptionId = 123;
 const optionId = 134;
@@ -38,7 +38,7 @@ const factory = new ProductOptionFactory(model);
 test("creates a new entity", () => {
   const entity = factory.create(
     { id: productId } as Product,
-    { id: optionId } as Option,
+    { id: optionId } as Option
   );
   expect(entity).toBeInstanceOf(FakeEntity);
 });
@@ -46,15 +46,17 @@ test("creates a new entity", () => {
 test("extracts and returns an entity", async () => {
   const entity = await factory.extract({ productOptionId });
   expect(entity).toBeInstanceOf(FakeEntity);
-  expect(model.product.option.select).toHaveBeenNthCalledWith(1, { productOptionId });
+  expect(model.product.option.select).toHaveBeenNthCalledWith(1, {
+    productOptionId,
+  });
   expect(ProductOption).toHaveBeenNthCalledWith(
     2,
     model,
     productId,
     optionId,
-    productOptionId,
+    productOptionId
   );
-  expect(entity!.data.value).toBe('test value');
+  expect(entity!.data.value).toBe("test value");
 });
 
 test("extracts all and returns an entities array", async () => {
@@ -62,15 +64,17 @@ test("extracts all and returns an entities array", async () => {
   expect(entities).toBeArray();
   const entity = entities[0];
   expect(entity).toBeInstanceOf(FakeEntity);
-  expect(model.product.option.select).toHaveBeenNthCalledWith(2, { productOptionId });
+  expect(model.product.option.select).toHaveBeenNthCalledWith(2, {
+    productOptionId,
+  });
   expect(ProductOption).toHaveBeenNthCalledWith(
     3,
     model,
     productId,
     optionId,
-    productOptionId,
+    productOptionId
   );
-  expect(entity.data.value).toBe('test value');
+  expect(entity.data.value).toBe("test value");
 });
 
 test("extracts and returns an undefined", async () => {

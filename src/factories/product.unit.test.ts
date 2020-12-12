@@ -1,9 +1,9 @@
 import Database from "../__mocks__/database";
 import FakeEntity from "../__mocks__/entity";
-import Model from "../model";
-import { initialProduct, initialProductDescription } from "../initial";
-import ProductFactory from "./product";
 import Product from "../entities/product";
+import { initialProduct, initialProductDescription } from "../initial";
+import Model from "../model";
+import ProductFactory from "./product";
 
 const productId = 12;
 
@@ -59,11 +59,7 @@ test("extracts and returns an entity", async () => {
   expect(model.product.description.select).toHaveBeenNthCalledWith(1, {
     productId,
   });
-  expect(Product).toHaveBeenNthCalledWith(
-    2,
-    model,
-    productId
-  );
+  expect(Product).toHaveBeenNthCalledWith(2, model, productId);
   expect(entity!.data.sortOrder).toBe(123);
   expect(entity!.description[1].name).toBe("test1");
   expect(entity!.description[2].name).toBe("test2");
@@ -78,11 +74,7 @@ test("extracts all and returns an entities array", async () => {
   expect(model.product.description.select).toHaveBeenNthCalledWith(2, {
     productId,
   });
-  expect(Product).toHaveBeenNthCalledWith(
-    3,
-    model,
-    productId
-  );
+  expect(Product).toHaveBeenNthCalledWith(3, model, productId);
   expect(entity.data.sortOrder).toBe(123);
   expect(entity.description[1].name).toBe("test1");
   expect(entity.description[2].name).toBe("test2");
