@@ -2,6 +2,7 @@ import Product from "../entities/product";
 import IFactory from "../interfaces/factory";
 import type Model from "../model";
 import { TProduct } from "../types";
+import ProductImageFactory from "./product-image";
 import ProductOptionFactory from "./product-option";
 import ProductSpecialFactory from "./product-special";
 
@@ -11,6 +12,8 @@ export default class ProductFactory implements IFactory<Product> {
   public option = new ProductOptionFactory(this.model);
 
   public special = new ProductSpecialFactory(this.model);
+
+  public image = new ProductImageFactory(this.model);
 
   create() {
     return new Product(this.model);

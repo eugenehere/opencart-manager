@@ -1,34 +1,31 @@
-import { initialProductSpecial } from "../../initial";
+import { initialProductImage } from "../../initial";
 import IDatabase from "../../interfaces/database";
 import IModel from "../../interfaces/model";
-import { TProductSpecial } from "../../types/product";
+import { TProductImage } from "../../types/product";
 import { toFieldset } from "../../utils";
 
-export default class ProductSpecialModel implements IModel<TProductSpecial> {
+export default class ProductImageModel implements IModel<TProductImage> {
   constructor(private database: IDatabase) {}
 
-  private table: string = "product_special";
+  private table: string = "product_image";
 
-  async select(criteria: Partial<TProductSpecial>) {
+  async select(criteria: Partial<TProductImage>) {
     const criteriaFieldset = toFieldset(criteria);
     return this.database.select(this.table, criteriaFieldset);
   }
 
-  async insert(data: Partial<TProductSpecial>) {
-    const dataFieldset = toFieldset({ ...initialProductSpecial, ...data });
+  async insert(data: Partial<TProductImage>) {
+    const dataFieldset = toFieldset({ ...initialProductImage, ...data });
     return this.database.insert(this.table, dataFieldset);
   }
 
-  async update(
-    criteria: Partial<TProductSpecial>,
-    data: Partial<TProductSpecial>
-  ) {
+  async update(criteria: Partial<TProductImage>, data: Partial<TProductImage>) {
     const criteriaFieldset = toFieldset(criteria);
     const dataFieldset = toFieldset(data);
     return this.database.update(this.table, criteriaFieldset, dataFieldset);
   }
 
-  async delete(criteria: Partial<TProductSpecial>) {
+  async delete(criteria: Partial<TProductImage>) {
     const criteriaFieldset = toFieldset(criteria);
     return this.database.delete(this.table, criteriaFieldset);
   }

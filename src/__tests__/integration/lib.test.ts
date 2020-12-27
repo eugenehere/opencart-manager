@@ -17,7 +17,7 @@ test("Connecting to database", async () => {
 test("Create and insert a new product", async () => {
   const product = opencart.product.create();
   expect(product.id).toBeUndefined();
-  product.setData({ price: 1212 });
+  product.setData({ price: 1212, image: "catalog/demo/iphone_5.jpg" });
   product.setDescription({ languageId: 1, name: "тестовый продукт" });
   product.setDescription({ languageId: 2, name: "test product" });
   await product.insert();
@@ -37,6 +37,17 @@ test("Create and insert a new product special", async () => {
   expect(productSpecial.id).toBeInteger();
   expect(productSpecial.data.price).toBe(999);
   id.productSpecial = productSpecial.id!;
+});
+
+test("Create and insert a new product image", async () => {
+  const product = await opencart.product.extract({ productId: id.product });
+  expect(product?.id).toBe(id.product);
+  const productImage = opencart.product.image.create(product!);
+  productImage.setData({ image: "catalog/demo/iphone_6.jpg" });
+  await productImage.insert();
+  expect(productImage.id).toBeInteger();
+  expect(productImage.data.image).toBe("catalog/demo/iphone_6.jpg");
+  id.productImage = productImage.id!;
 });
 
 test("Create and insert a new category", async () => {

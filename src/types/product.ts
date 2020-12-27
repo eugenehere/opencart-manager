@@ -84,3 +84,10 @@ export type TProductSpecial = {
   dateStart: Date;
   dateEnd: Date;
 };
+
+export type TProductImage = {
+  productImageId?: number;
+  productId: number;
+  image: string;
+  sortOrder: number;
+};

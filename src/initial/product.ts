@@ -2,6 +2,7 @@ import type {
   TProduct,
   TProductAttribute,
   TProductDescription,
+  TProductImage,
   TProductOption,
   TProductOptionValue,
   TProductSpecial,
@@ -87,5 +88,11 @@ export const initialProductSpecial: TProductSpecial = {
   priority: 1,
   price: 0,
   dateStart: new Date(0),
-  dateEnd: new Date('9999'),
+  dateEnd: new Date("9999"),
+};
+
+export const initialProductImage: TProductImage = {
+  productId: -1,
+  image: "",
+  sortOrder: 0,
 };

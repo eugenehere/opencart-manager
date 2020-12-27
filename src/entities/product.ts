@@ -82,6 +82,7 @@ export default class Product implements IEntity {
     await this.model.product.description.delete({ productId: this._id });
     await this.model.product.attribute.delete({ productId: this._id });
     await this.model.product.special.delete({ productId: this._id });
+    await this.model.product.image.delete({ productId: this._id });
     this._id = undefined;
     return this;
   }

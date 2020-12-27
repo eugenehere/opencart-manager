@@ -5,6 +5,7 @@ import type { TProduct } from "../../types/product";
 import { toFieldset } from "../../utils";
 import ProductAttributeModel from "./product-attribute";
 import ProductDescriptionModel from "./product-description";
+import ProductImageModel from "./product-image";
 import ProductOptionModel from "./product-option";
 import ProductSpecialModel from "./product-special";
 
@@ -20,6 +21,8 @@ export default class ProductModel implements IModel<TProduct> {
   public attribute = new ProductAttributeModel(this.database);
 
   public special = new ProductSpecialModel(this.database);
+
+  public image = new ProductImageModel(this.database);
 
   async select(criteria: Partial<TProduct>) {
     const criteriaFieldset = toFieldset(criteria);
