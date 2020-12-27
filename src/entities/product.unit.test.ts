@@ -41,6 +41,7 @@ model.product.toStore = jest.fn(async () => headers);
 model.product.toCategory = jest.fn(async () => headers);
 model.product.attribute.insert = jest.fn(async () => headers);
 model.product.attribute.delete = jest.fn(async () => headers);
+model.product.special.delete = jest.fn(async () => headers);
 
 test("Instantiate", () => {
   entity = new Product(model)
@@ -169,6 +170,9 @@ test("Delete", async () => {
     productId: entityId,
   });
   expect(model.product.attribute.delete).toHaveBeenNthCalledWith(1, {
+    productId: entityId,
+  });
+  expect(model.product.special.delete).toHaveBeenNthCalledWith(1, {
     productId: entityId,
   });
   expect(entity.id).toBeUndefined();

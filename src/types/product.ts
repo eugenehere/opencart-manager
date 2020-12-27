@@ -74,3 +74,13 @@ export type TProductAttribute = {
   languageId: number;
   text: string;
 };
+
+export type TProductSpecial = {
+  productSpecialId?: number;
+  productId: number;
+  customerGroupId: number;
+  priority: number;
+  price: number;
+  dateStart: Date;
+  dateEnd: Date;
+};

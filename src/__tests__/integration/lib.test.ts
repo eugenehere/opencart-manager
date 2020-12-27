@@ -1,10 +1,8 @@
 import Factory from "../../factory";
 import opencartManager from "../../index";
-import IEntity from "../../interfaces/entity";
-import { isInteger } from "../../utils";
 import { testDbCredentials } from "../config";
 
-const deleting = true;
+const deleting = false;
 
 let opencart: Factory;
 const id: { [K: string]: number } = {};
@@ -28,6 +26,17 @@ test("Create and insert a new product", async () => {
   expect(product.description[1].name).toBe("тестовый продукт");
   expect(product.description[2].name).toBe("test product");
   id.product = product.id!;
+});
+
+test("Create and insert a new product special", async () => {
+  const product = await opencart.product.extract({ productId: id.product });
+  expect(product?.id).toBe(id.product);
+  const productSpecial = opencart.product.special.create(product!);
+  productSpecial.setData({ price: 999 });
+  await productSpecial.insert();
+  expect(productSpecial.id).toBeInteger();
+  expect(productSpecial.data.price).toBe(999);
+  id.productSpecial = productSpecial.id!;
 });
 
 test("Create and insert a new category", async () => {
@@ -250,6 +259,15 @@ if (deleting) {
     await optionValue!.delete();
     expect(optionValue!.id).toBeUndefined();
   });
+
+  // test("Extract and delete a product special", async () => {
+  //   const productSpecial = await opencart.product.special.extract({
+  //     productSpecialId: id.productSpecial,
+  //   });
+  //   expect(productSpecial?.id).toBe(id.productSpecial);
+  //   await productSpecial!.delete();
+  //   expect(productSpecial!.id).toBeUndefined();
+  // });
 
   test("Extract and delete an option", async () => {
     const option = await opencart.option.extract({ optionId: id.option });

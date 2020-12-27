@@ -3,11 +3,14 @@ import IFactory from "../interfaces/factory";
 import type Model from "../model";
 import { TProduct } from "../types";
 import ProductOptionFactory from "./product-option";
+import ProductSpecialFactory from "./product-special";
 
 export default class ProductFactory implements IFactory<Product> {
   constructor(private model: Model) {}
 
   public option = new ProductOptionFactory(this.model);
+
+  public special = new ProductSpecialFactory(this.model);
 
   create() {
     return new Product(this.model);

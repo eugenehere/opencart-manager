@@ -6,6 +6,7 @@ import { toFieldset } from "../../utils";
 import ProductAttributeModel from "./product-attribute";
 import ProductDescriptionModel from "./product-description";
 import ProductOptionModel from "./product-option";
+import ProductSpecialModel from "./product-special";
 
 export default class ProductModel implements IModel<TProduct> {
   constructor(private database: IDatabase) {}
@@ -17,6 +18,8 @@ export default class ProductModel implements IModel<TProduct> {
   public option = new ProductOptionModel(this.database);
 
   public attribute = new ProductAttributeModel(this.database);
+
+  public special = new ProductSpecialModel(this.database);
 
   async select(criteria: Partial<TProduct>) {
     const criteriaFieldset = toFieldset(criteria);

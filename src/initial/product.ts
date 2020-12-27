@@ -4,6 +4,7 @@ import type {
   TProductDescription,
   TProductOption,
   TProductOptionValue,
+  TProductSpecial,
 } from "../types";
 
 export const initialProduct: TProduct = {
@@ -78,4 +79,13 @@ export const initialProductAttribute: TProductAttribute = {
   attributeId: 0,
   languageId: 0,
   text: "",
+};
+
+export const initialProductSpecial: TProductSpecial = {
+  productId: -1,
+  customerGroupId: 1,
+  priority: 1,
+  price: 0,
+  dateStart: new Date(0),
+  dateEnd: new Date('9999'),
 };
