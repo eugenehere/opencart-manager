@@ -14,6 +14,9 @@ npm i opencart-manager
 ```javascript
 import opencartManager from 'opencart-manager';
 
+// This is a dummy example usage
+// Will make complete documentation soon
+
 const opencart = opencartManager({
     host: 'host',
     user: 'user',
@@ -27,7 +30,7 @@ const product = opencart.product.create()
     .setDescription({ languageId: 1, name: 'Apple iPhone X 256GB' })
     .setDescription({ languageId: 2, name: 'Apple iPhone X 256ГБ' })
 
-await product.save();
+await product.insert();
 
 // Attach product to an existing category
 const category = await opencart.category.extract({ categoryId: 1 });
